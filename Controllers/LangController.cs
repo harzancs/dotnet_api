@@ -4,7 +4,7 @@ namespace dotnet_api.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class LangController : ControllerBase
+public partial class LangController : ControllerBase
 {
     [HttpGet]
     public ActionResult<List<String>> GetLang()
@@ -38,4 +38,41 @@ public class LangController : ControllerBase
         return Ok(new { langName = name, id = id });
     }
 
+    [HttpPost]
+    public ActionResult<LangModel> AddLang([FromBody] LangModel item)
+    {
+        return Ok(item);
+    }
+
+    [HttpPost("addLang/")]
+    public ActionResult<LangModel> AddLangForm([FromForm] LangModel item)
+    {
+        return Ok(item);
+    }
+
+    [HttpPut("{id}")]
+    public ActionResult UpdateLang(int id, [FromBody] LangModel item)
+    {
+
+        if (id != item.id)
+        {
+            return BadRequest(); // 400
+
+        }
+        if (id != 10)
+        {
+            return NotFound(); //404
+        }
+        return Ok(item);
+    }
+
+    [HttpDelete("{id}")]
+    public ActionResult DeleteById(int id)
+    {
+        if (id != 10)
+        {
+            return NotFound();
+        }
+        return NoContent();
+    }
 }
