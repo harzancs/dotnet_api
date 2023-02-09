@@ -10,9 +10,14 @@ public class UserModel
     public int id { get; set; }
 
     [StringLength(50)]
-    public String username { get; set; }
-    public String firstName { get; set; }
-    public String lastName { get; set; }
-    public String password { get; set; }
-    public String createdAt { get; set; }
+    public String? username { get; set; } = null!;
+
+    public String? firstName { get; set; } = null!;
+
+    public String? lastName { get; set; } = null!;
+    
+    public String? password { get; set; } = null!;
+
+    public String? createdAt { get; set; } = null!;
+    public String? UpdatedAt { get; set; } = null!;
 }
